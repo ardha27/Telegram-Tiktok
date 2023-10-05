@@ -1,0 +1,3 @@
+douyin_tiktok_scraper==1.2.9
+python-telegram-bot==20.6
+Requests==2.31.0

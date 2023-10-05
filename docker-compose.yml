@@ -1,0 +1,9 @@
+version: '1'
+services:
+  chatgpt-telegram-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    restart: unless-stopped
