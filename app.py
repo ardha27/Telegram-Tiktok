@@ -1,6 +1,7 @@
 from telegram import Update, InputFile
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from io import BytesIO
+import os
 import requests
 from douyin_tiktok_scraper.scraper import Scraper
 import logging
@@ -8,7 +9,7 @@ import logging
 logging.getLogger().setLevel(logging.CRITICAL)
 
 api = Scraper()
-TOKEN = '6328020589:AAFnIjw-7dtEKYmiSAS6IO3T-tGeYo7ScpE'
+token = os.environ.get('TOKEN')
 BOT_USERNAME = '@ManukaAI_Bot'
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
