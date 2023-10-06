@@ -4,12 +4,14 @@ from io import BytesIO
 import os
 import requests
 from douyin_tiktok_scraper.scraper import Scraper
+from dotenv import load_dotenv
 import logging
 
 logging.getLogger().setLevel(logging.CRITICAL)
+load_dotenv()
 
 api = Scraper()
-token = os.environ.get('TOKEN')
+token = os.getenv("TOKEN")
 BOT_USERNAME = '@ManukaAI_Bot'
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -81,7 +83,7 @@ async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 if __name__ == '__main__':
     print('Starting bot...')
-    app = Application.builder().token(TOKEN).build()
+    app = Application.builder().token(token).build()
 
     # Commands
     app.add_handler(CommandHandler('start', start_command))
