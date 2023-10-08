@@ -81,8 +81,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
                 try:
                     await update.message.reply_video(video=InputFile(video_hq), caption=text)
-                except:
-                    await update.message.reply_video(video=InputFile(video), caption=text)
+                except Exception as e:
+                    if "Request Entity Too Large (413)" in str(e):
+                        await update.message.reply_video(video=InputFile(video), caption=text)
+                    else:
+                        await update.message.reply_text("An error occurred: " + str(e))
             else:
                 await update.message.reply_text("Please send only TikTok URL")
         else:
