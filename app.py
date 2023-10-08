@@ -55,7 +55,7 @@ async def hybrid_parsing(url: str) -> dict:
         print(f'An error occurred: {str(e)}')
         return None
 
-    return video_stream, video_stream_hq, music, caption
+    return video_stream, video_stream_hq, music, caption, video_hq
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message_type: str = update.message.chat.type
@@ -77,16 +77,17 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 video_hq = result[1]
                 music = result[2]
                 caption = result[3]
+                link =  result[4]
                 text = "Sound:\n" + music + "\n\n" + "Caption:\n" + caption
+                text_link = "Link:\n" + link + "\n\n" + "Sound:\n" + music + "\n\n" + "Caption:\n" + caption
 
                 try:
                     await update.message.reply_video(video=InputFile(video_hq), caption=text)
                 except Exception as e:
                     if "Request Entity Too Large (413)" in str(e):
-                        print("Video is too large, sending normal video...")
-                        await update.message.reply_video(video=InputFile(video), caption=text)
-                    else:
-                        await update.message.reply_text("An error occurred: " + str(e))
+                        print("Video is too large, sending link instead")
+                        await update.message.reply_text(text_link)
+
             else:
                 await update.message.reply_text("Please send only TikTok URL")
         else:
