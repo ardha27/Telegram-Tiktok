@@ -79,7 +79,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 caption = result[3]
                 link =  result[4]
                 text = "Sound:\n" + music + "\n\n" + "Caption:\n" + caption
-                text_link = "Link:\n" + link + "\n\n" + "Sound:\n" + music + "\n\n" + "Caption:\n" + caption
+                text_link = "Video is too large, sending link instead" + "\n\n" + "Link:\n" + link + "\n\n" + "Sound:\n" + music + "\n\n" + "Caption:\n" + caption
 
                 try:
                     await update.message.reply_video(video=InputFile(video_hq), caption=text)
