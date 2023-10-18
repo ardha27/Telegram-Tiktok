@@ -78,7 +78,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 music = result[2]
                 caption = result[3]
                 link =  result[4]
-                text = "Sound:\n" + music + "\n\n" + "Caption:\n" + caption
+                text = "Link:\n" + link + "\n\n" + "Sound:\n" + music + "\n\n" + "Caption:\n" + caption
                 text_link = "Video is too large, sending link instead" + "\n\n" + "Link:\n" + link + "\n\n" + "Sound:\n" + music + "\n\n" + "Caption:\n" + caption
 
                 try:
